@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            font: 10px;
+            align-items: center;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
+
+        .x.axis path {
+            display: flex;
+            stroke: "black"
+        }
+
+        h3 {
+            margin-top: 3px;
+            margin-bottom: -10px;
+            font-size: large;
+        }
+    </style>
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">Cholera Outbreak Map (London, 1854)</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link " href="index.html">Graphs</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="documentation.html">Documentation <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="video.html">Presentation Video</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html" >About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="card bg-light">
+            <div class="card-header">Documentation</div>
+            <div class="card-body">
+                <div class="doccontent">
+                    <h3>Introduction of 1854 London Cholera Outbreak </h3><br>
+                    <p style="font-size: medium;">"
+                        Due to a significant influx of people and a lack of effective sanitary facilities, the Soho district 
+                        of London had a serious dirt problem in the mid-19th century.
+                        Many cellars had cesspools beneath their floorboards, which formed as a result of sewage and dirt leaking in from outside.
+                        The London administration decided to throw the sewage into the River Thames to contaminate the water supply since the cesspools were overflowing.
+                            people."(Wikipedia,[1])</p>
+
+                    <h3>Background before investigation by John Snow </h3><br>
+                    <p style="font-size: medium;">
+                        Because of the foul odor, many people assumed it was an airborne sickness. 
+                        When John Snow treated a patient with diarrhea symptoms, he was able to determine that it was a waterborne illness.
+                        Though he was a physician,his investigation and map aided him in locating the Broad Street Pump.</p>
+
+                    <h3>Design of Cholera Map Visualization</h3><br>
+                    <ol style="font-size: medium;">
+                            <li>
+                            First, I thoroughly reviewed each of the four datasets that had been utilized to create Visualization.
+                        </li>
+                        <li>
+                            Following the observation of streets. I prefer to add lines between 
+                            each coordinate in a json file that contains coordinates so that we can generate a basic map layout.I plotted a rough sketch on my paper.
+                            After seeing the rough sketch thought of creating a line graph  using svgContainer in d3.js.
+                        </li>
+                        <br>
+                        <img src="resources/images/screen.png"  style="width:400px;height:250px;">
+                        <br>
+                        <br>
+                        <li>
+                            After examining through the deathagesex and deathdays files, which contain coordinates, age and gender, 
+                            and the date and count of deaths for each data point, I came up with the idea of mapping circles to each data point and we can filter on age and gender.
+                        </li>
+                        <li>
+                            After I examined the pump data file, I downloaded a pump image and plotted a pump on each data point.
+                        </li>
+                        <br>
+                        <img src="resources/images/water_pump.png" style="width:400px;height:250px;">
+                        <br>
+                        <br>
+                        <li>
+                            After going through the deathdays datafile,mapping each data point with deaths on the y axis and dates on the x axis, a line graph was formed.
+                            Tried implementing a line graph in a paper.
+                        </li>
+                        <br>
+                        <img src="resources/images/linegraph.png" style="width:400px;height:250px;">
+                        <br>
+                        <br>
+                        <li>
+                            The colors used in the cholera map display have labels assigned to them and they were chosen from the Color Brewer website, all of the colors chosen will stay effective for color blindness.[8]
+                        </li>
+                        <li>
+                            The line graph interacts with the cholera map; for example, when you click the dot on the line graph, 
+                            the number of deaths plotted on the cholera map are presented till the date.
+                        </li>
+
+                        <li>One can zoom in and out on the cholera map and adjust accordingly and click to see all the values on the map.</li>
+
+                        <li>Page Header layout is constructed using navbar.</li>
+                        <br>
+                        <img src="resources/images/Navbar.png" style="width:1200px;height:100px;">
+                        <br>
+                        <br>
+                        <li>
+                            When you clicked on Cholera Outbreak Map(London, 1854) the webpage will get refreshed.
+                        </li>
+                        <li>
+                            The Presentation Video tab includes a brief video explanation of how this visualization works.
+                        </li>
+                    </ol>
+
+                    <h3 style="font-size: medium;">Tools & Frameworks</h3><br>
+                    <ul style="font-size: medium;">
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>Javascript</li>
+                        <li>D3.js</li>
+                        <li>Bootstrap</li>
+                    </ul>
+
+
+                    <h3 style="font-size: medium;">References</h3><br>
+                    <ol style="font-size: medium;">
+                        <li>
+                            <a
+                                href="https://en.wikipedia.org/wiki/1854_Broad_Street_cholera_outbreak">https://en.wikipedia.org/wiki/1854_Broad_Street_cholera_outbreak</a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.youtube.com/watch?v=lNjrAXGRda4">https://www.youtube.com/watch?v=lNjrAXGRda4</a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://d3js.org/">https://d3js.org/</a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://getbootstrap.com/docs/4.0/components/navbar/">https://getbootstrap.com/docs/4.0/components/navbar/</a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://getbootstrap.com/docs/4.0/content/tables/">https://getbootstrap.com/docs/4.0/content/tables/</a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.d3indepth.com/zoom-and-pan/">https://www.d3indepth.com/zoom-and-pan/</a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.educative.io/edpresso/how-to-create-a-line-chart-using-d3">https://www.educative.io/edpresso/how-to-create-a-line-chart-using-d3</a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3">https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3</a>
+                        </li>
+                    </ol>
+                    <div id="bar_chart"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
